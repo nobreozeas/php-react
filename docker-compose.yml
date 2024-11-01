@@ -1,0 +1,16 @@
+services:
+  web:
+    image: php:8.3-apache
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - .:/var/www/html
+      - ./.docker/httpd.conf/httpd.conf:/etc/apache2/sites-available/000-default.conf # Alteração para sites-available
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+
+networks:
+  webnet:
